@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.scss";
-import GlassCard from './components/ui/glass-card/glass-card';
 import Hero from './components/components/hero/hero';
 import TechStack from './components/components/tech-stack/tech-stack';
 import React from 'react';

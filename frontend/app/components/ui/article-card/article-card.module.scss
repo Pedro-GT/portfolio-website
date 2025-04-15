@@ -1,0 +1,49 @@
+@import '../../../styles/variables.module.scss';
+
+.articleCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.articleContent {
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-lg;
+  height: 100%;
+}
+
+.articleTitle {
+  font-family: $font-primary;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $primary;
+  margin-bottom: $spacing-md;
+}
+
+.articleExcerpt {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+  flex-grow: 1;
+}
+
+.readMoreLink {
+  font-family: $font-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $accent;
+  text-decoration: none;
+  align-self: flex-start;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
