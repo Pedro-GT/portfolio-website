@@ -1,0 +1,129 @@
+@import './styles/variables.module.scss';
+
+body {
+  background-color: $background;
+  font-family: $font-primary;
+  color: $text-primary;
+}
+
+.page {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutSection {
+  width: 100%;
+  padding: $spacing-2xl 0;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutContainer {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-2xl;
+  padding: 0 $spacing-xl;
+}
+
+.aboutContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.aboutTitle {
+  font-family: $font-primary;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+}
+
+.aboutText {
+  font-family: $font-primary;
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+  color: $text-primary;
+}
+
+.aboutAnimation {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 700px;
+  aspect-ratio: 2/1.5;
+}
+
+/* Responsive styles */
+@media (max-width: $breakpoint-lg) {
+  .aboutContainer {
+    max-width: 1000px;
+    gap: $spacing-xl;
+  }
+  
+  .aboutTitle {
+    font-size: $font-size-2xl;
+  }
+  
+  .aboutText {
+    font-size: $font-size-base;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .aboutSection {
+    padding: $spacing-xl 0;
+  }
+  
+  .aboutContainer {
+    flex-direction: column;
+    gap: $spacing-xl;
+    padding: 0 $spacing-lg;
+  }
+  
+  .aboutContent {
+    width: 100%;
+  }
+  
+  .aboutAnimation {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .aboutSection {
+    padding: $spacing-lg 0;
+  }
+  
+  .aboutContainer {
+    gap: $spacing-lg;
+    padding: 0 $spacing-md;
+  }
+  
+  .aboutTitle {
+    font-size: $font-size-xl;
+  }
+  
+  .aboutText {
+    font-size: $font-size-sm;
+  }
+  
+  .aboutAnimation {
+    max-width: 300px;
+  }
+}
+
+
+
+
+

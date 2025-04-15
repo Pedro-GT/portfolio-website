@@ -1,0 +1,345 @@
+// hero.module.scss
+@import '../../../styles/variables.module.scss';
+
+.hero {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xl 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.heroContent {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  position: relative;
+  z-index: 1;
+  gap: $spacing-xl;
+}
+
+.leftSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  max-width: 50%;
+}
+
+.cubeContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.square1 {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  padding-bottom: 80%; /* Creates a responsive square */
+  background-color: $primary;
+  z-index: 1;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.square2 {
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  padding-bottom: 80%; /* Creates a responsive square */
+  background-color: $accent;
+  top: 50px;
+  left: 50px;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.textContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  color: $text-light;
+  text-align: center;
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  z-index: 10;
+  font-family: $font-primary;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-md;
+  line-height: 1.2;
+  color: $text-light;
+}
+
+.subtitle {
+  font-family: $font-primary;
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+  color: $text-light;
+}
+
+.rightSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 50%;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 600px;
+}
+
+.rectangle1 {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  background-color: $accent;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  min-width: 40px;
+}
+
+.rectangle2 {
+  position: absolute;
+  width: 85%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Responsive styles */
+@media (max-width: $breakpoint-xl) {
+  .heroContent {
+    max-width: 1000px;
+    gap: $spacing-lg;
+  }
+  
+  .square1, .square2 {
+    max-width: 450px;
+  }
+  
+  .square2 {
+    top: 40px;
+    left: 40px;
+  }
+  
+  .imageContainer {
+    max-width: 450px;
+    height: 550px;
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .heroContent {
+    max-width: 900px;
+    gap: $spacing-md;
+  }
+  
+  .leftSection, .rightSection {
+    max-width: 48%;
+  }
+
+  .rightSection {
+    margin-left: $spacing-2xl;
+  }
+  
+  .square1, .square2 {
+    max-width: 400px;
+  }
+  
+  .square2 {
+    top: 30px;
+    left: 30px;
+  }
+  
+
+
+  .title {
+    font-size: $font-size-3xl;
+  }
+  
+  .subtitle {
+    font-size: $font-size-base;
+  }
+  
+  .imageContainer {
+    max-width: 400px;
+    height: 500px;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .hero {
+    min-height: auto;
+    padding: $spacing-xl 0;
+  }
+  
+  .heroContent {
+    flex-direction: column;
+    padding: 0 $spacing-lg;
+    gap: $spacing-2xl;
+  }
+  
+  .leftSection, .rightSection {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .leftSection {
+    margin-bottom: $spacing-xl;
+    align-items: center;
+  }
+  
+  .cubeContainer {
+    width: 100%;
+    min-height: 350px;
+    margin: 0 auto;
+  }
+  
+  .square1, .square2 {
+    max-width: 70%;
+    margin-top: 40px;
+    padding-bottom: 70%;
+  }
+  
+  .square2 {
+    top: -30px;
+    left: 130px;
+  }
+  
+  .textContent {
+    max-width: 100%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .rightSection {
+    justify-content: center;
+  }
+  
+  .imageContainer {
+    height: 400px;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .hero {
+    padding: $spacing-lg 0;
+  }
+  
+  .heroContent {
+    padding: 0 $spacing-md;
+    gap: $spacing-xl;
+  }
+  
+  .cubeContainer {
+    min-height: 300px;
+  }
+  
+  .square1, .square2 {
+    max-width: 100%;
+    padding-bottom: 90%;
+  }
+  
+  .square2 {
+    top: 15px;
+    left: 15px;
+  }
+  
+  .title {
+    font-size: $font-size-2xl;
+  }
+  
+  .subtitle {
+    font-size: $font-size-sm;
+  }
+  
+  .imageContainer {
+    height: 350px;
+    max-width: 100%;
+  }
+  
+  .rectangle1 {
+    width: 15%;
+  }
+  
+  .rectangle2 {
+    width: 88%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: $spacing-md 0;
+  }
+  
+  .heroContent {
+    padding: 0 $spacing-sm;
+    gap: $spacing-lg;
+  }
+  
+  .cubeContainer {
+    min-height: 250px;
+  }
+  
+  .square1, .square2 {
+    padding-bottom: 100%;
+  }
+  
+  .square2 {
+    top: 10px;
+    left: 10px;
+  }
+  
+  .title {
+    font-size: $font-size-xl;
+  }
+  
+  .subtitle {
+    font-size: $font-size-xs;
+  }
+  
+  .imageContainer {
+    height: 300px;
+  }
+  
+  .rectangle1 {
+    width: 10%;
+    min-width: 20px;
+  }
+  
+  .rectangle2 {
+    width: 92%;
+  }
+}
