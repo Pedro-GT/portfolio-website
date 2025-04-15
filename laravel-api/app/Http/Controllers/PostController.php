@@ -35,6 +35,7 @@ class PostController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'slug' => 'nullable|string|max:255|unique:posts',
+            'excerpt' => 'required|string|max:300',
             'published_at' => 'nullable|date'
         ]);
 
@@ -53,6 +54,7 @@ class PostController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'slug' => $slug,
+            'excerpt' => $request->excerpt,
             'published_at' => $request->published_at
         ]);
 
@@ -110,6 +112,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'sometimes|required|string|max:255',
             'content' => 'sometimes|required|string',
+            'excerpt' => 'sometimes|string|max:300',
             'slug' => 'sometimes|string|max:255|unique:posts,slug,' . $post->id,
             'published_at' => 'nullable|date'
         ]);
@@ -129,7 +132,7 @@ class PostController extends Controller
             $request->merge(['slug' => $slug]);
         }
 
-        $post->update($request->only(['title', 'content', 'slug', 'published_at']));
+        $post->update($request->only(['title', 'content','excerpt', 'slug', 'published_at']));
 
         return response()->json([
             'status' => 'success',

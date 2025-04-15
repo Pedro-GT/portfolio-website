@@ -1,52 +1,59 @@
 "use client";
 import { remark } from 'remark';
 import html from 'remark-html';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { notFound } from 'next/navigation';
 import styles from '../../styles/article-page.module.scss';
+import { fetchPostBySlug } from '@/app/lib/api';
 
-// Example articles with Markdown content
-const articles = [
-  {
-    id: 1,
-    title: 'Building Modern Web Applications with NextJS',
-    excerpt: 'Explore the benefits of server-side rendering and static site generation in modern web development.',
-    slug: 'building-modern-web-applications',
-    content: `# Building Modern Web Applications with NextJS
-
-## Introduction
-
-Next.js is a React framework that enables several exciting features.
-    `
-  },
-  // ...other articles with Markdown content
-];
-
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const article = articles.find(article => article.slug === params.slug);
+export default function ArticlePage({ params } : { params: { slug: string } }) {
+  // Unwrap the params object using React.use()
+  const slug = params.slug;
+  const [article, setArticle] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [contentHtml, setContentHtml] = useState('');
+  
+  useEffect(() => {
+    async function loadArticle() {
+      try {
+        const data = await fetchPostBySlug(slug);
+        setArticle(data);
+      } catch (error) {
+        console.error('Error loading article:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    loadArticle();
+  }, [slug]);
+  
+  useEffect(() => {
+    if (article?.content) {
+      async function processMarkdown() {
+        const processedContent = await remark()
+          .use(html)
+          .process(article.content);
+        setContentHtml(processedContent.toString());
+      }
+      processMarkdown();
+    }
+  }, [article]);
+  
+  if (loading) {
+    return <div className={styles.page}>Loading...</div>;
+  }
   
   if (!article) {
     notFound();
   }
-
-  const [contentHtml, setContentHtml] = useState('');
-
-  useEffect(() => {
-    async function processMarkdown() {
-      const processedContent = await remark()
-        .use(html)
-        .process(article.content);
-      setContentHtml(processedContent.toString());
-    }
-    processMarkdown();
-  }, [article.content]);
 
   return (
     <div className={styles.page}>
       <article className={styles.article}>
         <h1 className={styles.articleTitle}>{article.title}</h1>
         <p className={styles.articleExcerpt}>{article.excerpt}</p>
-        <div >
+        <div className={styles.articleContent}>
           <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </div>
       </article>
