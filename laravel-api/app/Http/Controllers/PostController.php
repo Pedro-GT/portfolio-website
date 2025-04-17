@@ -23,6 +23,21 @@ class PostController extends Controller
         ], 200);
     }
 
+     /**
+     * Get posts by source.
+     *
+     * @param  string  $source
+     * @return \Illuminate\Http\Response
+     */
+    public function getBySource($source)
+    {
+        $posts = Post::where('source', $source)->latest()->get();
+        
+        return response()->json([
+            'status' => 'success',
+            'data' => $posts
+        ], 200);
+    }
     /**
      * Store a newly created post in storage.
      *
@@ -36,6 +51,7 @@ class PostController extends Controller
             'content' => 'required|string',
             'slug' => 'nullable|string|max:255|unique:posts',
             'excerpt' => 'required|string|max:300',
+            'source' => 'required|string|max:50',
             'published_at' => 'nullable|date'
         ]);
 
@@ -55,6 +71,7 @@ class PostController extends Controller
             'content' => $request->content,
             'slug' => $slug,
             'excerpt' => $request->excerpt,
+            'source' => $request->source,
             'published_at' => $request->published_at
         ]);
 
@@ -113,6 +130,7 @@ class PostController extends Controller
             'title' => 'sometimes|required|string|max:255',
             'content' => 'sometimes|required|string',
             'excerpt' => 'sometimes|string|max:300',
+            'source' => 'sometimes|string|max:50',
             'slug' => 'sometimes|string|max:255|unique:posts,slug,' . $post->id,
             'published_at' => 'nullable|date'
         ]);

@@ -19,7 +19,8 @@ class Post extends Model
         'content',
         'slug',
         'excerpt',
-        'published_at'
+        'published_at',
+        'source',
     ];
 
     /**

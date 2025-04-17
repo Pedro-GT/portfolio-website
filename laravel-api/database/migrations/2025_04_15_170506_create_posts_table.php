@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('slug')->unique();
             $table->date('published_at')->nullable();
             $table->text('excerpt');
+            $table->text('source');
             $table->timestamps(); // This adds created_at and updated_at columns
 
         });
