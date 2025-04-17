@@ -1,0 +1,172 @@
+// ZigZag.module.scss
+@import '../../../styles/variables.module.scss';
+
+.zigzagSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xl;
+  padding: $spacing-2xl 0;
+}
+
+.projectContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto $spacing-2xl auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $spacing-2xl;
+  padding: 0 $spacing-xl;
+  
+  &.odd {
+    flex-direction: row-reverse;
+  }
+}
+
+.projectContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.projectTitle {
+  font-family: $font-primary;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $primary;
+}
+
+.projectDescription {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $text-primary;
+}
+
+.projectTech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+.techTag {
+  display: inline-block;
+  padding: $spacing-xs $spacing-sm;
+  background-color: $accent;
+  color: $text-light;
+  border-radius: 4px;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
+.projectLinks {
+  display: flex;
+  gap: $spacing-md;
+}
+
+.projectLink {
+  display: inline-block;
+  padding: $spacing-sm $spacing-md;
+  background-color: $primary;
+  color: $text-light;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: $font-weight-medium;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: darken($primary, 10%);
+  }
+}
+
+.projectVisual {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.projectImage {
+  object-fit: fit;
+}
+
+/* Responsive styles */
+@media (max-width: $breakpoint-lg) {
+  .projectContainer {
+    max-width: 1000px;
+    gap: $spacing-xl;
+  }
+  
+  .projectTitle {
+    font-size: $font-size-xl;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .zigzagSection {
+    gap: $spacing-xl;
+    padding: $spacing-xl 0;
+  }
+  
+  .projectContainer {
+    flex-direction: column;
+    gap: $spacing-xl;
+    padding: 0 $spacing-lg;
+    
+    &.odd {
+      flex-direction: column;
+    }
+  }
+  
+  .projectContent,
+  .projectVisual {
+    width: 100%;
+  }
+  
+  .imageWrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .zigzagSection {
+    gap: $spacing-lg;
+    padding: $spacing-lg 0;
+  }
+  
+  .projectContainer {
+    gap: $spacing-lg;
+    padding: 0 $spacing-md;
+  }
+  
+  .projectTitle {
+    font-size: $font-size-lg;
+  }
+  
+  .projectDescription {
+    font-size: $font-size-sm;
+  }
+  
+  .projectLinks {
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+  
+  .projectLink {
+    width: fit-content;
+  }
+}
