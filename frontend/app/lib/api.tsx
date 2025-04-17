@@ -1,5 +1,5 @@
 export async function fetchPosts() {
-    const res = await fetch(`http://localhost:8000/api/posts`);
+    const res = await fetch(`http://localhost:8000/api/posts/source/pedro/`);
     if (!res.ok) {
       throw new Error('Failed to fetch posts');
     }

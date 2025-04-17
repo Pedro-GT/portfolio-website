@@ -24,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('posts/published', [PostController::class, 'published']);
 Route::get('posts/drafts', [PostController::class, 'drafts']);
 Route::apiResource('posts', PostController::class);
+Route::get('posts/source/{source}', [App\Http\Controllers\PostController::class, 'getBySource']);

@@ -40,8 +40,8 @@
                 <label for="source" class="form-label">Source</label>
                 <select class="form-select @error('source') is-invalid @enderror" id="source" name="source" required>
                     <option value="" disabled>Select a source...</option>
-                    <option value="Pedro" {{ old('source', $post->source) == 'Pedro' ? 'selected' : '' }}>Pedro</option>
-                    <option value="Allenty" {{ old('source', $post->source) == 'Allenty' ? 'selected' : '' }}>Allenty</option>
+                    <option value="pedro" {{ old('source', $post->source) == 'pedro' ? 'selected' : '' }}>pedro</option>
+                    <option value="allenty" {{ old('source', $post->source) == 'allenty' ? 'selected' : '' }}>allenty</option>
                 </select>
                 @error('source')
                     <div class="invalid-feedback">{{ $message }}</div>

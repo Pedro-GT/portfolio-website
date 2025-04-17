@@ -39,8 +39,8 @@
                     <label for="source" class="form-label">Source</label>
                     <select class="form-select @error('source') is-invalid @enderror" id="source" name="source" required>
                         <option value="" selected disabled>Select a source...</option>
-                        <option value="Pedro" {{ old('source') == 'Pedro' ? 'selected' : '' }}>Pedro</option>
-                        <option value="Allenty" {{ old('source') == 'Allenty' ? 'selected' : '' }}>Allenty</option>
+                        <option value="pedro" {{ old('source') == 'pedro' ? 'selected' : '' }}>pedro</option>
+                        <option value="allenty" {{ old('source') == 'allenty' ? 'selected' : '' }}>allenty</option>
                     </select>
                     @error('source')
                         <div class="invalid-feedback">{{ $message }}</div>
