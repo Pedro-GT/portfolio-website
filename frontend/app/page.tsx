@@ -14,7 +14,7 @@ export default function Home() {
       <Hero 
         title="Full Stack Developer"
         subtitle="Frontend Developer & UI/UX Enthusiast"
-        imageSrc="/images/LinkedinPedro-removebg-preview.png"
+        imageSrc="/images/illustration_no_bg.png"
         imageAlt="Portfolio hero image"
       />
       {/* About Me Section */}

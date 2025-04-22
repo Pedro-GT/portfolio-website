@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\Auth\TokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +16,23 @@ use App\Http\Controllers\PostController;
 |
 */
 
-// Default Laravel route
+// Auth token endpoint
+Route::post('/tokens/create', [TokenController::class, 'createToken']);
+
+// User info
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Post routes
+// Public Post routes
+Route::get('posts', [PostController::class, 'index']);
+Route::get('posts/{post}', [PostController::class, 'show']);
 Route::get('posts/published', [PostController::class, 'published']);
-Route::get('posts/drafts', [PostController::class, 'drafts']);
-Route::apiResource('posts', PostController::class);
-Route::get('posts/source/{source}', [App\Http\Controllers\PostController::class, 'getBySource']);
+
+// Protected Post routes
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('posts', [PostController::class, 'store']);
+    Route::put('posts/{post}', [PostController::class, 'update']);
+    Route::delete('posts/{post}', [PostController::class, 'destroy']);
+    Route::get('posts/drafts', [PostController::class, 'drafts']);
+});
