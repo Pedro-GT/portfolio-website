@@ -31,8 +31,8 @@ class PostController extends Controller
      */
     public function getBySource($source)
     {
-        $posts = Post::where('source', $source)->latest()->get();
-        
+        $posts = Post::published('source', $source)->latest('published_at')->get(); 
+
         return response()->json([
             'status' => 'success',
             'data' => $posts
