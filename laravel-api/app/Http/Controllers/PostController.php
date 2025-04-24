@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Routing\Controller as BaseController;
 
+use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     /**
      * Create a new controller instance.
@@ -17,6 +19,15 @@ class PostController extends Controller
         $this->middleware('auth:sanctum')->only(['store', 'update', 'destroy', 'drafts']);
     }
 
+    public function getBySource($source)
+    {
+        $posts = Post::published('source', $source)->latest('published_at')->get(); 
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $posts
+        ], 200);
+    }
     /**
      * Display a listing of posts.
      *
@@ -71,8 +82,19 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($identifier)
     {
+        $post = is_numeric($identifier) ? 
+                Post::find($identifier) : 
+                Post::where('slug', $identifier)->first();
+        
+        if (!$post) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Post not found'
+            ], 404);
+        }
+
         return response()->json([
             'status' => 'success',
             'data' => $post

@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin'); // Apply admin middleware
+    }
+
     public function showRegistrationForm()
     {
         return view('auth.register');
@@ -21,20 +26,23 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'is_admin' => 'boolean', // Optional field to set if the new user will be an admin
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        $user = User::create([
+        $userData = [
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
+            'is_admin' => $request->has('is_admin') ? (bool)$request->is_admin : false,
+        ];
 
-        auth()->login($user);
+        $user = User::create($userData);
 
-        return redirect()->route('dashboard');
+        // Optionally, you might want to redirect without login (common for admin creating users)
+        return redirect()->route('users.index')->with('success', 'User created successfully!');
     }
 }

@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('posts', [PostController::class, 'index']);
 Route::get('posts/{post}', [PostController::class, 'show']);
 Route::get('posts/published', [PostController::class, 'published']);
+Route::get('posts/source/{source}', [App\Http\Controllers\PostController::class, 'getBySource']);
 
 // Protected Post routes
 Route::middleware('auth:sanctum')->group(function () {

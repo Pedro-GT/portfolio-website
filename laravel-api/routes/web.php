@@ -14,8 +14,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Auth Routes
 Route::middleware('guest')->group(function () {
-    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-    Route::post('/register', [RegisterController::class, 'register']);
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
 });
@@ -38,6 +36,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('posts', PostViewController::class)->except(['index', 'show']);
 });
 
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register']);
+});
 // Public post routes
 Route::get('posts', [PostViewController::class, 'index'])->name('posts.index');
 Route::get('posts/{post}', [PostViewController::class, 'show'])->name('posts.show');
